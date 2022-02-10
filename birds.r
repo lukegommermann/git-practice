@@ -3,6 +3,7 @@ library(dplyr)
 library(readr)
 library(ggwordcloud)
 library(stringr)
+library(ggplot2)
 
 # Read in bird checklist
 birds <- read_csv("https://raw.githubusercontent.com/KateMMiller/IMD_R_Training_Advanced/main/data/birds.csv")
@@ -69,3 +70,11 @@ ggplot(bird_words_df[1:n_words,],
   scale_color_continuous(type = "viridis")
 
 ggsave("birds_wordcloud.png", bg = "white")
+
+#----Group size histogram----
+group_size %>%
+  ggplot(aes(x = species_count)) +
+  geom_histogram() +
+  ggtitle("Distribution of species group size") +
+  xlab("Number of species") +
+  ylab("Frequency")
